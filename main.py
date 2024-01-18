@@ -1,68 +1,63 @@
-
 from tkinter import *
 
 screen = Tk()
-screen.minsize(width=500, height=400)
-screen.title("Password Generator")
-screen.config(background="white")
 
+screen.title("Password Generator")
+screen.config(background="white", padx=50, pady=50)
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
+def save_info():
+    web_info = web_entry.get()
+    email_info = email_entry.get()
+    password_info = password_entry.get()
+    my_data = [web_info, email_info, password_info]
+    for info in my_data:
+        file = open("saved_info.txt", "a")
+        file.write(info + " | ")
+        
+        
+
+
+        
+
 # ---------------------------- UI SETUP ------------------------------- #
+logo = PhotoImage(file="/home/paulq02/Desktop/Password-Manager/logo.png")
 
+my_canvas = Canvas(height=200, width=200, bg="white", highlightbackground="white")
+my_canvas.grid(row=0, column=1)
 
-
-my_canvas = Canvas(width=300, height=300, background="white",highlightbackground="white")
-my_canvas.place(x=150, y=1)
-
-logo = PhotoImage(file="/home/paulq02/Desktop/password-manager-start/logo.png")
-my_canvas.create_image(120,120,image=logo)
-
+my_canvas.create_image(125,100, image=logo)
 
 web_label = Label(text="Website:", background="white")
-web_label.place(x=30, y=220)
+web_label.grid(row=1, column=0)
 
-web_entry = Entry(width=35, highlightcolor="blue")
-web_entry.place(x=120, y=220)
+web_entry = Entry(width=43, highlightcolor="blue")
+web_entry.grid(row=1, column=1, columnspan=2)
 
 
 email_label = Label(text="Email/Username:", background="white")
-email_label.place(x=5, y=250)
+email_label.grid(row=2, column=0)
 
-email_entry = Entry(width=35, highlightcolor="blue")
-email_entry.place(x=120, y=250)
+
+email_entry = Entry(width=43, highlightcolor="blue")
+email_entry.grid(row=2, column=1, columnspan=2)
+email_entry.insert(0, "Paulq10@gmail.com")
 
 password_label = Label(text="Password:", background="white")
-password_label.place(x=30, y=280)
+password_label.grid(row=3, column=0)
 
-password_entry = Entry(width=15, highlightcolor="blue")
-password_entry.place(x=120, y=280)
+password_entry = Entry(width=24, highlightcolor="blue")
+password_entry.place(x=119, y=248)
 
-gen_button = Button(text="Generate Password", bg="white", width=16, pady=1, activebackground="white")
-gen_button.place(x=250, y=280)
-
-
-add_button = Button(text="Add", width=32, bg="white", activebackground="white", pady=1)
-add_button.place(x=120, y=310)
+gen_pass_button = Button(background="white", text="Generate Password", pady=0, width=15)
+gen_pass_button.grid(row=3, column=2, padx=4)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+add_button = Button(text="Add", background="white", width=40, pady=0, command=save_info)
+add_button.grid(row=4,column=1, columnspan=2)
 
 
 
